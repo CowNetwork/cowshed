@@ -2,3 +2,7 @@ name: Cowshed
 main: network.cow.mc.cowshed.CowshedPlugin
 api-version: 1.16
 version: 1.0.0
+
+commands:
+  sonic:
+    permission: cow.cowshed.sonic
