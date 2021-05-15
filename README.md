@@ -8,6 +8,5 @@ Core lobby plugin.
 * [ ] Speed shoes
 * [ ] Join/Leave Messages
 * [ ] Chat
-* [ ] Toggles
-    * [ ] Fly
-    * [ ] Build
+* [ ] Fly
+* [ ] Build
