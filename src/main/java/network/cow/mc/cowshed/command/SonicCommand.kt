@@ -36,7 +36,7 @@ class SonicCommand : CommandExecutor {
 
         if (!isSonic) {
             val item = ItemBuilder(Material.LEATHER_BOOTS)
-                    .name("Speed-Schuhe".gradient(Gradients.CORPORATE))
+                    .name("Sonics Söckchen".gradient(Gradients.CORPORATE))
                     .meta<LeatherArmorMeta> {
                         setColor(Color.fromRGB(255, 151, 216))
                     }
