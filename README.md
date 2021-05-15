@@ -1,0 +1,2 @@
+# cowshed
+Core lobby plugin.
