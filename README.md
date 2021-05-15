@@ -4,7 +4,7 @@ Core lobby plugin.
 ## First Iteration
 
 * [ ] Cancel Events
-* [ ] Double Jump
+* [x] Double Jump
 * [ ] Speed shoes
 * [ ] Join/Leave Messages
 * [ ] Chat
