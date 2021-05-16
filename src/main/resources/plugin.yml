@@ -6,3 +6,7 @@ version: 1.0.0
 commands:
   sonic:
     permission: cow.cowshed.sonic
+  fly:
+    permission: cow.cowshed.fly
+  build:
+    permission: cow.cowshed.build

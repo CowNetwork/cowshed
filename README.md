@@ -7,6 +7,6 @@ Core lobby plugin.
 * [x] Double Jump
 * [x] Speed shoes
 * [ ] Join/Leave Messages
-* [ ] Chat
+* [x] Chat
 * [ ] Fly
 * [ ] Build
