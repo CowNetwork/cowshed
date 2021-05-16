@@ -39,8 +39,11 @@ class ChatListener : Listener {
 
     @EventHandler
     private fun onJoin(event: PlayerJoinEvent) {
+        val player = event.player
+        player.displayName(player.displayName().highlight()) // TODO: use indigo to determine color
+
         event.joinMessage(this.joinMessages.random()
-                .formatToComponent(event.player.displayName().highlight())
+                .formatToComponent(player.displayName())
                 .info()
                 .prefix("Lobby".gradient(Gradients.CORPORATE)))
     }
