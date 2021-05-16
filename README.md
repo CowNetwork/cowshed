@@ -6,7 +6,7 @@ Core lobby plugin.
 * [ ] Cancel Events
 * [x] Double Jump
 * [x] Speed shoes
-* [ ] Join/Leave Messages
+* [x] Join/Leave Messages
 * [x] Chat
 * [ ] Fly
 * [ ] Build

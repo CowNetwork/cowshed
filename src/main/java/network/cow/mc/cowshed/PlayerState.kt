@@ -11,6 +11,7 @@ data class PlayerState(
         var isSonic: Boolean = false,
         var isFlying: Boolean = false,
         var isBuilding: Boolean = false,
+        var canMultiJump: Boolean = false,
 )
 
 private const val STATE_KEY = "cow.cowshed"

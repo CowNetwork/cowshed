@@ -1,5 +1,6 @@
 package network.cow.mc.cowshed
 
+import network.cow.mc.cowshed.command.FlyCommand
 import network.cow.mc.cowshed.command.SonicCommand
 import network.cow.mc.cowshed.listener.ChatListener
 import network.cow.mc.cowshed.listener.MultiJumpListener
@@ -23,6 +24,7 @@ class CowshedPlugin : JavaPlugin() {
         Bukkit.getPluginManager().registerEvents(SonicListener(), this)
 
         Bukkit.getPluginCommand("sonic")?.setExecutor(SonicCommand())
+        Bukkit.getPluginCommand("fly")?.setExecutor(FlyCommand())
     }
 
 }

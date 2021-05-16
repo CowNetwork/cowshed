@@ -6,6 +6,7 @@ import org.bukkit.Sound
 import org.bukkit.event.EventHandler
 import org.bukkit.event.Listener
 import org.bukkit.event.player.PlayerJoinEvent
+import org.bukkit.event.player.PlayerQuitEvent
 import org.bukkit.event.player.PlayerToggleFlightEvent
 
 /**
@@ -22,8 +23,14 @@ class MultiJumpListener : Listener {
     private fun onJoin(event: PlayerJoinEvent) {
         val player = event.player
         if (player.hasPermission("cow.cowshed.multijump")) {
-            event.player.allowFlight = true
+            player.state.canMultiJump = true
+            player.allowFlight = true
         }
+    }
+
+    @EventHandler
+    private fun onQuit(event: PlayerQuitEvent) {
+        event.player.allowFlight = true
     }
 
     @EventHandler
@@ -32,7 +39,7 @@ class MultiJumpListener : Listener {
         if (player.gameMode == GameMode.SPECTATOR || player.gameMode == GameMode.CREATIVE) return
 
         val state = player.state
-        if (state.isFlying || state.isBuilding) return
+        if (state.isFlying || state.isBuilding || !player.state.canMultiJump) return
 
         val vector = player.location.direction
         val velocity = vector.multiply(VELOCITY_MULTIPLIER).setY(VELOCITY_HEIGHT)

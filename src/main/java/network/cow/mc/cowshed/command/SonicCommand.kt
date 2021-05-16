@@ -25,14 +25,14 @@ class SonicCommand : CommandExecutor {
 
     override fun onCommand(sender: CommandSender, command: Command, label: String, args: Array<out String>) : Boolean {
         if (sender !is Player) {
-            sender.sendError("Du bist kein Spieler!")
+            sender.sendError("This command must be executed as a player.") // TODO: translate
             return true
         }
 
         val isSonic = sender.state.isSonic
         if (!isSonic) {
             val item = ItemBuilder(Material.LEATHER_BOOTS)
-                    .name("Sonics Söckchen".gradient(AwtColor(23, 86, 155), AwtColor(32, 123, 222)))
+                    .name("Sonics Söckchen".gradient(AwtColor(23, 86, 155), AwtColor(32, 123, 222))) // TODO: translate
                     .meta<LeatherArmorMeta> {
                         setColor(Color.fromRGB(255, 151, 216))
                     }

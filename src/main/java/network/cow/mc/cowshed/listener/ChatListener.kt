@@ -19,7 +19,7 @@ import org.bukkit.event.player.PlayerQuitEvent
  */
 class ChatListener : Listener {
 
-    // TODO: use translations
+    // TODO: translate
     private val joinMessages = listOf(
             "%1\$s just joined the server.",
             "%1\$s just joined. Everyone, look busy!",
