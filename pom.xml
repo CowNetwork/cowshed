@@ -14,6 +14,17 @@
         <kotlin.compiler.incremental>true</kotlin.compiler.incremental>
     </properties>
 
+    <repositories>
+        <repository>
+            <id>cow-releases</id>
+            <url>https://maven.cow.network/releases</url>
+        </repository>
+        <repository>
+            <id>cow</id>
+            <url>https://maven.cow.network/internal</url>
+        </repository>
+    </repositories>
+
     <dependencies>
         <dependency>
             <groupId>com.destroystokyo.paper</groupId>
