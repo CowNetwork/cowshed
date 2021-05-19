@@ -11,3 +11,4 @@ commands:
     permission: cow.cowshed.fly
   build:
     permission: cow.cowshed.build
+  spawn: {}

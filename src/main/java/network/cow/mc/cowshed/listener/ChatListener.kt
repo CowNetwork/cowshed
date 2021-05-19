@@ -1,13 +1,14 @@
 package network.cow.mc.cowshed.listener
 
 import io.papermc.paper.event.player.AsyncChatEvent
+import net.kyori.adventure.text.format.NamedTextColor
+import network.cow.messages.adventure.component
 import network.cow.messages.adventure.formatToComponent
 import network.cow.messages.adventure.gradient
 import network.cow.messages.adventure.highlight
 import network.cow.messages.adventure.info
 import network.cow.messages.adventure.plus
 import network.cow.messages.adventure.prefix
-import network.cow.messages.adventure.separator
 import network.cow.messages.core.Gradients
 import org.bukkit.event.EventHandler
 import org.bukkit.event.Listener
@@ -58,7 +59,7 @@ class ChatListener : Listener {
         event.composer { _, _, _ ->
             val name = event.player.displayName()
             val message = event.message()
-            return@composer name + " : ".separator() + message
+            return@composer name + ": ".component(NamedTextColor.WHITE) + message
         }
     }
 
