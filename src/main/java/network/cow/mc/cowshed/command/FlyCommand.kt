@@ -1,11 +1,13 @@
 package network.cow.mc.cowshed.command
 
+import network.cow.mc.cowshed.Translations
 import network.cow.mc.cowshed.state
 import network.cow.messages.adventure.active
-import network.cow.messages.adventure.formatToComponent
 import network.cow.messages.adventure.inactive
-import network.cow.messages.spigot.sendError
+import network.cow.messages.adventure.translate
+import network.cow.messages.adventure.translateToComponent
 import network.cow.messages.spigot.sendInfo
+import network.cow.messages.spigot.sendTranslatedError
 import org.bukkit.Bukkit
 import org.bukkit.command.Command
 import org.bukkit.command.CommandExecutor
@@ -20,7 +22,7 @@ class FlyCommand : CommandExecutor {
     override fun onCommand(sender: CommandSender, command: Command, label: String, args: Array<out String>) : Boolean {
         if (args.isEmpty()) {
             if (sender !is Player) {
-                sender.sendError("This command must be executed as a player.") // TODO: translate
+                sender.sendTranslatedError(Translations.Common.Command.ERROR_REQUIRES_PLAYER)
                 return true
             }
             this.toggleFlight(sender)
@@ -30,16 +32,16 @@ class FlyCommand : CommandExecutor {
         if (args.size == 1) {
             val player = Bukkit.getPlayer(args.first())
             if (player == null) {
-                sender.sendError("The player does not exist.") // TODO: translate
+                sender.sendTranslatedError(Translations.Common.Command.ERROR_PLAYER_NOT_FOUND)
                 return true
             }
 
-            val message = "Flight has been %1\$s for player %2\$s." // TODO: translate
+            val message = Translations.Minecraft.Fly.MESSAGE_STATE
             val result = this.toggleFlight(player)
 
-            sender.sendInfo(message.formatToComponent(when {
-                result -> "enabled".active()
-                else -> "disabled".inactive()
+            sender.sendInfo(message.translateToComponent(sender, when {
+                result -> Translations.Common.State.ENABLED.translate(sender).active()
+                else -> Translations.Common.State.DISABLED.translate(sender).inactive()
             }, player.displayName()))
 
             return true
@@ -56,11 +58,11 @@ class FlyCommand : CommandExecutor {
             player.allowFlight = true
             state.isBuilding = false
             state.isFlying = true
-            player.sendInfo("I believe you can fly now (%1\$s).".formatToComponent("flight enabled".active())) // TODO: translate
+            player.sendInfo(Translations.Minecraft.Fly.MESSAGE_ENABLED.translateToComponent(player, Translations.Minecraft.Fly.STATE_ENABLED.translate(player).active()))
         } else {
             player.allowFlight = state.canMultiJump
             state.isFlying = false
-            player.sendInfo("Whoops, seems like your wings are broken (%1\$s).".formatToComponent("flight disabled".inactive())) // TODO: translate
+            player.sendInfo(Translations.Minecraft.Fly.MESSAGE_DISABLED.translateToComponent(player, Translations.Minecraft.Fly.STATE_DISABLED.translate(player).inactive()))
         }
 
         return shouldFly

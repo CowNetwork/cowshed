@@ -1,8 +1,10 @@
 package network.cow.mc.cowshed.command
 
+import network.cow.mc.cowshed.Translations
 import network.cow.mc.cowshed.state
 import network.cow.messages.adventure.gradient
-import network.cow.messages.spigot.sendError
+import network.cow.messages.adventure.translateToComponent
+import network.cow.messages.spigot.sendTranslatedError
 import network.cow.spigot.extensions.ItemBuilder
 import org.bukkit.Color
 import org.bukkit.Material
@@ -25,14 +27,16 @@ class SonicCommand : CommandExecutor {
 
     override fun onCommand(sender: CommandSender, command: Command, label: String, args: Array<out String>) : Boolean {
         if (sender !is Player) {
-            sender.sendError("This command must be executed as a player.") // TODO: translate
+            sender.sendTranslatedError(Translations.Common.Command.ERROR_REQUIRES_PLAYER)
             return true
         }
 
         val isSonic = sender.state.isSonic
         if (!isSonic) {
+            val name = Translations.Sonic.ITEM_NAME.translateToComponent(sender).gradient(AwtColor(23, 86, 155), AwtColor(32, 123, 222))
+
             val item = ItemBuilder(Material.LEATHER_BOOTS)
-                    .name("Sonics Söckchen".gradient(AwtColor(23, 86, 155), AwtColor(32, 123, 222))) // TODO: translate
+                    .name(name)
                     .meta<LeatherArmorMeta> {
                         setColor(Color.fromRGB(255, 151, 216))
                     }

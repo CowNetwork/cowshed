@@ -1,6 +1,7 @@
 package network.cow.mc.cowshed.command
 
-import network.cow.messages.spigot.sendError
+import network.cow.mc.cowshed.Translations
+import network.cow.messages.spigot.sendTranslatedError
 import org.bukkit.command.Command
 import org.bukkit.command.CommandExecutor
 import org.bukkit.command.CommandSender
@@ -13,7 +14,7 @@ class SpawnCommand : CommandExecutor {
 
     override fun onCommand(sender: CommandSender, command: Command, label: String, args: Array<out String>) : Boolean {
         if (sender !is Player) {
-            sender.sendError("This command must be executed as a player.") // TODO: translate
+            sender.sendTranslatedError(Translations.Common.Command.ERROR_REQUIRES_PLAYER)
             return true
         }
 
