@@ -4,18 +4,19 @@ metadata:
   name: cowshed
 
 build:
-  tagPolicy:
-    gitCommit: {}
   artifacts:
     - image: ghcr.io/cownetwork/cowshed
       context: .
-
+      docker:
+        buildArgs:
+          MAVEN_USER: "{{.MVN_USER}}"
+          MAVEN_PASS: "{{.MVN_PASS}}"
 deploy:
   kubectl:
     manifests:
      - run/deployment.yaml
 portForward:
-  - resourceType: deployment
+  - resourceType: Deployment
     resourceName: cowshed
     namespace: minecraft-staging
     port: 25565
