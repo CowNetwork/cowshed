@@ -1,0 +1,22 @@
+apiVersion: skaffold/v2beta17
+kind: Config
+metadata:
+  name: cowshed
+
+build:
+  tagPolicy:
+    gitCommit: {}
+  artifacts:
+    - image: ghcr.io/cownetwork/cowshed
+      context: .
+
+deploy:
+  kubectl:
+    manifests:
+     - run/deployment.yaml
+portForward:
+  - resourceType: deployment
+    resourceName: cowshed
+    namespace: minecraft-staging
+    port: 25565
+    localPort: 25565

@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: minecraft-staging
+  name: cowshed
+  labels:
+    app: lobby
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: lobby
+  template:
+    metadata:
+      labels:
+        app: lobby
+    spec:
+      imagePullSecrets:
+        - name: regcred
+      containers:
+        - name: cowshed
+          imagePullPolicy: Always
+          image: ghcr.io/cownetwork/cowshed
+          ports:
+            - containerPort: 25565
