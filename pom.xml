@@ -44,6 +44,18 @@
             <version>1.0.0</version>
             <scope>provided</scope>
         </dependency>
+        <dependency>
+            <groupId>network.cow.indigo</groupId>
+            <artifactId>indigo-client-spigot-api</artifactId>
+            <version>0.1.0</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>network.cow.grape</groupId>
+            <artifactId>grape-api</artifactId>
+            <version>0.3.0</version>
+            <scope>provided</scope>
+        </dependency>
 
         <!-- Kotlin -->
         <dependency>
