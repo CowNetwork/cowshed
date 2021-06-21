@@ -2,7 +2,7 @@ package network.cow.mc.cowshed
 
 import org.bukkit.Bukkit
 import org.bukkit.Location
-import org.bukkit.configuration.ConfigurationSection
+import org.bukkit.configuration.*
 
 class NpcConfig(
     val name: String = "",
@@ -42,7 +42,9 @@ class Config(
 ) {
     companion object {
         fun from(section: ConfigurationSection): Config {
-            val npcList = section.getList("npcs") as List<ConfigurationSection>
+            val npcList = section.getConfigurationSection("npcs")!!.getKeys(false)
+
+            println(npcList::class.java)
 
             val location = Location(
                 Bukkit.getWorld("spawn"),
@@ -56,7 +58,7 @@ class Config(
 
             return Config(
                 location,
-                npcList.map { NpcConfig.from(it) }.toList()
+                npcList.map { NpcConfig.from(section.getConfigurationSection("npcs.$it")!!) }.toList()
             )
         }
     }

@@ -28,7 +28,7 @@ object WrappedNpcFactory {
         val profile = Profile(UUID.fromString("fdef0011-1c58-40c8-bfef-0bdcb1495938"))
         profile.name = config.name
         profile.uniqueId = uuid
-        profile.setProperty(Profile.Property("textures", "", ""))
+        profile.setProperty(Profile.Property("textures", config.textureValue, config.textureSignature))
         profile.complete()
 
         val handle = NPC.builder()
