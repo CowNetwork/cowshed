@@ -16,7 +16,7 @@ build:
 deploy:
   kubectl:
     manifests:
-     - run/deployment.yaml
+     - deploy/deployment.yaml
 portForward:
   - resourceType: Deployment
     resourceName: cowshed
