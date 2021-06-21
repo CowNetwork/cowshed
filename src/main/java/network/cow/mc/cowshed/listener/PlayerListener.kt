@@ -29,7 +29,7 @@ class PlayerListener(private val config: Config) : Listener {
 
         Bukkit.getScheduler().runTaskLater(JavaPlugin.getPlugin(CowshedPlugin::class.java), Runnable {
             // winke, winke :3
-            NpcRegistry.get("gustav")?.labymod()?.queue(LabyModModifier.LabyModAction.EMOTE, 4)
+            NpcRegistry.get("gustav")!!.labymod().queue(LabyModModifier.LabyModAction.EMOTE, 4).send(player)
         }, 40L)
     }
 

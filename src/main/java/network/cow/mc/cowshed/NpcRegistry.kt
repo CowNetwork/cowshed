@@ -15,7 +15,7 @@ import java.util.concurrent.ThreadLocalRandom
 object NpcRegistry {
 
     private val pool = NPCPool.builder(JavaPlugin.getPlugin(CowshedPlugin::class.java))
-        .actionDistance(30)
+        .actionDistance(10)
         .spawnDistance(60)
         .build()
 
