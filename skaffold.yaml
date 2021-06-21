@@ -4,6 +4,8 @@ metadata:
   name: cowshed
 
 build:
+  local:
+    useBuildkit: true
   artifacts:
     - image: ghcr.io/cownetwork/cowshed
       context: .

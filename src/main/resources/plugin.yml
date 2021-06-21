@@ -2,7 +2,7 @@ name: cowshed
 main: network.cow.mc.cowshed.CowshedPlugin
 api-version: 1.16
 version: 1.0.0
-depend: [Messages, SpigotExtensions]
+depend: [Messages, SpigotExtensions, ProtocolLib]
 
 commands:
   sonic:
@@ -12,5 +12,3 @@ commands:
   build:
     permission: cow.cowshed.build
   spawn: {}
-  npc: {}
-  emote: {}

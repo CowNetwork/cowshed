@@ -1,11 +1,7 @@
 package network.cow.mc.cowshed
 
 import network.cow.mc.cowshed.command.*
-import network.cow.mc.cowshed.listener.CancelListener
-import network.cow.mc.cowshed.listener.ChatListener
-import network.cow.mc.cowshed.listener.PlayerListener
-import network.cow.mc.cowshed.listener.MultiJumpListener
-import network.cow.mc.cowshed.npc.WrappedNpcFactory
+import network.cow.mc.cowshed.listener.*
 import network.cow.messages.adventure.gradient
 import network.cow.messages.core.Gradients
 import network.cow.messages.spigot.MessagesPlugin
@@ -24,16 +20,17 @@ class CowshedPlugin : JavaPlugin() {
 
         this.lobbyConfig = Config.from(this.config)
 
-        Bukkit.getPluginManager().registerEvents(PlayerListener(), this)
+        Bukkit.getPluginManager().registerEvents(PlayerListener(this.lobbyConfig), this)
         Bukkit.getPluginManager().registerEvents(MultiJumpListener(), this)
         Bukkit.getPluginManager().registerEvents(ChatListener(), this)
         Bukkit.getPluginManager().registerEvents(CancelListener(), this)
+        Bukkit.getPluginManager().registerEvents(NpcListener(), this)
 
         Bukkit.getPluginCommand("spawn")?.setExecutor(SpawnCommand())
         Bukkit.getPluginCommand("sonic")?.setExecutor(SonicCommand())
         Bukkit.getPluginCommand("fly")?.setExecutor(FlyCommand())
         Bukkit.getPluginCommand("build")?.setExecutor(BuildCommand())
 
-        this.lobbyConfig.npcs.forEach { WrappedNpcFactory.createNpc(it) }
+        this.lobbyConfig.npcs.forEach { NpcRegistry.register(it) }
     }
 }

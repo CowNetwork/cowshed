@@ -5,6 +5,7 @@ import org.bukkit.Location
 import org.bukkit.configuration.*
 
 class NpcConfig(
+    val id: String,
     val name: String = "",
     val lines: List<String> = listOf(),
     val lookAtPlayer: Boolean = false,
@@ -13,7 +14,7 @@ class NpcConfig(
     val location: Location
 ) {
     companion object {
-        fun from(section: ConfigurationSection): NpcConfig {
+        fun from(id: String, section: ConfigurationSection): NpcConfig {
             val location = Location(
                 Bukkit.getWorld("spawn"),
                 section.getDouble("location.x"),
@@ -25,6 +26,7 @@ class NpcConfig(
             location.pitch = section.getDouble("location.pitch", 0.0).toFloat()
 
             return NpcConfig(
+                id,
                 section.getString("name") ?: "",
                 section.getStringList("lines") ?: listOf(),
                 section.getBoolean("lookAtPlayer"),
@@ -48,17 +50,17 @@ class Config(
 
             val location = Location(
                 Bukkit.getWorld("spawn"),
-                section.getDouble("location.x"),
-                section.getDouble("location.y"),
-                section.getDouble("location.z")
+                section.getDouble("spawnLocation.x"),
+                section.getDouble("spawnLocation.y"),
+                section.getDouble("spawnLocation.z")
             )
 
-            location.yaw = section.getDouble("location.yaw", 0.0).toFloat()
-            location.pitch = section.getDouble("location.pitch", 0.0).toFloat()
+            location.yaw = section.getDouble("spawnLocation.yaw", 0.0).toFloat()
+            location.pitch = section.getDouble("spawnLocation.pitch", 0.0).toFloat()
 
             return Config(
                 location,
-                npcList.map { NpcConfig.from(section.getConfigurationSection("npcs.$it")!!) }.toList()
+                npcList.map { NpcConfig.from(it, section.getConfigurationSection("npcs.$it")!!); }.toList()
             )
         }
     }
